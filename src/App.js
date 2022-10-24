@@ -5,7 +5,7 @@ import ItemListContainer from "./components/ItemListContainer/ItemListContainer"
 function App() {
   const greeting = {
     titulo: "Bienvenidxs a Electro!",
-    subtitulo: "Subtitulo Prueba",
+    subtitulo: "Subtitulo de prueba",
   };
   return (
     <div>
