@@ -6,8 +6,8 @@ const NavBar = () => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow nav-color-bottom">
       <div className="container d-flex justify-content-between align-items-center">
         <a
-          className="navbar-brand text-color-light align-self-center font-size-md bold-500"
-          href="index.html"
+          className="navbar-brand text-color-light align-self-center font-size-brand bold-600"
+          href="#/"
         >
           Electro<span className="text-danger ">.</span>
         </a>

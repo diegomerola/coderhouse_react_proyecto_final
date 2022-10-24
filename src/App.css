@@ -7,29 +7,21 @@
   height: 350px
 }
 
+.font-size-brand {
+  font-size: 39px;
+}
+
 .font-size-md {
-  font-size: 45px;
+  font-size: 44px;
 }
 
 /* Colores */
-.bg-color-orange {
-  background-color: #F15113;
-}
-
-.bg-color-blue {
-  background-color: #0D6EFD;
-}
-
 .bg-color-grey {
   background-color: #E9ECEF;
 }
 
 .bg-color-grey-body {
   background-color: #F8F9FA;
-}
-
-.bg-dark {
-  background-color: #212934;
 }
 
 .bold-600 {

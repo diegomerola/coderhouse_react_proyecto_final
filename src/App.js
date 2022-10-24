@@ -3,10 +3,14 @@ import NavBar from "./components/NavBar/NavBar";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 
 function App() {
+  const greeting = {
+    titulo: "Bienvenidxs a Electro!",
+    subtitulo: "Subtitulo Prueba",
+  };
   return (
     <div>
       <NavBar />
-      <ItemListContainer greetings={"Categories of The Month"} />
+      <ItemListContainer greeting={greeting} />
     </div>
   );
 }
