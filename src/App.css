@@ -17,10 +17,6 @@
 
 /* Colores */
 .bg-color-grey {
-  background-color: #E9ECEF;
-}
-
-.bg-color-grey-body {
   background-color: #F8F9FA;
 }
 
@@ -62,6 +58,10 @@
 
 .navbar .nav-icon {
   margin-right: 20px;
+}
+
+.btn-transition {
+  transition: 0.3s;
 }
 
 /* Media Queries */
