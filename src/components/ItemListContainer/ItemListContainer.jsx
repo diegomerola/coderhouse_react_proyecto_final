@@ -1,5 +1,6 @@
 import React from "react";
-import ItemCount from "../ItemCount/ItemCount";
+import ItemList from "../ItemList/ItemList";
+/* import ItemCount from "../ItemCount/ItemCount"; */
 
 const ItemListContainer = ({ greeting }) => {
   // Destructuring de greeting:
@@ -17,7 +18,8 @@ const ItemListContainer = ({ greeting }) => {
         </div>
       </header>
       <main>
-        <ItemCount stock={5} initial={1} />
+        {/* <ItemCount stock={5} initial={1} /> */}
+        <ItemList />
       </main>
     </>
   );
