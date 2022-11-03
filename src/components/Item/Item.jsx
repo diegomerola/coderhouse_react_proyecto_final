@@ -1,6 +1,7 @@
 import React from "react";
 
-const Item = ({ category, brand, title, price, pictureUrl, stock }) => {
+const Item = ({ producto }) => {
+  const { category, brand, title, price, pictureUrl, stock } = producto;
   return (
     <div className="col-md-8 col-lg-6 col-xl-3 py-4">
       <div className="card text-black">

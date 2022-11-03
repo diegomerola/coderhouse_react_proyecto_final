@@ -1,10 +1,25 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import ItemList from "../ItemList/ItemList";
 /* import ItemCount from "../ItemCount/ItemCount"; */
+import data from "../../utilities/db.js";
+import myPromise from "../../utilities/myPromise";
 
 const ItemListContainer = ({ greeting }) => {
   // Destructuring de greeting:
   const { titulo, subtitulo } = greeting;
+
+  // UseState para guardar datos de consulta asincronica:
+  const [datos, setDatos] = useState([]);
+
+  // UseEffect para cuando el componente este montado:
+  useEffect(() => {
+    // Hacer consulta asincronica:
+    myPromise(2000, data)
+      .then((response) => setDatos(response))
+      .catch((error) => console.log(error))
+      .finally(() => console.log("Consulta finalizada"));
+  }, []);
   return (
     <>
       <header>
@@ -19,7 +34,7 @@ const ItemListContainer = ({ greeting }) => {
       </header>
       <main>
         {/* <ItemCount stock={5} initial={1} /> */}
-        <ItemList />
+        <ItemList datos={datos} />
       </main>
     </>
   );
