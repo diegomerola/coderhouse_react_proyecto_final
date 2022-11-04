@@ -15,6 +15,10 @@
   font-size: 44px;
 }
 
+.font-size-sm {
+  font-size: 14px
+}
+
 /* Colores */
 .bg-color-grey {
   background-color: #F8F9FA;
@@ -63,6 +67,16 @@
 .btn-transition {
   transition: 0.3s;
 }
+
+.card-radius {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.line-bottom {
+  border-bottom: 1px solid #D6D6D6;
+}
+
 
 /* Media Queries */
 /* Medium devices (tablets, 768px and up)*/
