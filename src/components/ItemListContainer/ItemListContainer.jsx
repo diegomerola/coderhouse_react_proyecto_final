@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import ItemList from "../ItemList/ItemList";
-/* import ItemCount from "../ItemCount/ItemCount"; */
+import ItemCount from "../ItemCount/ItemCount";
 import data from "../../utilities/db.js";
 import myPromise from "../../utilities/myPromise";
 
@@ -33,7 +33,7 @@ const ItemListContainer = ({ greeting }) => {
         </div>
       </header>
       <main>
-        {/* <ItemCount stock={5} initial={1} /> */}
+        <ItemCount stock={5} initial={1} />
         <ItemList datos={datos} />
       </main>
     </>

@@ -17,35 +17,26 @@ const ItemCount = ({ stock, initial }) => {
   };
 
   return (
-    <div className="container">
-      <div className="row justify-content-center">
-        <div className="col-md-8 col-lg-6 col-xl-4 py-4">
-          <div className="card-body bg-color-grey p-2">
-            <div className="text-center">
-              <h5 className="card-title">Notebook HP 14-dk1510la</h5>
-            </div>
-            <div className="d-flex justify-content-center align-items-center m-3">
-              <button
-                className="btn btn-dark btn-transition"
-                onClick={decrementarContador}
-              >
-                -
-              </button>
-              <span className=" mx-3">{count}</span>
-              <button
-                className="btn btn-dark btn-transition"
-                onClick={incrementarContador}
-              >
-                +
-              </button>
-            </div>
-            <div className="d-flex justify-content-center">
-              <button className="btn btn-outline-danger btn-lg block w-100 btn-transition">
-                Agregar al carrito
-              </button>
-            </div>
-          </div>
-        </div>
+    <div className="cart d-flex mt-4 align-items-center">
+      <div className="d-flex justify-content-center align-items-center me-3 bold-500">
+        <button
+          className="btn btn-outline-danger border border-2 btn-transition"
+          onClick={decrementarContador}
+        >
+          -
+        </button>
+        <span className="mx-2">{count}</span>
+        <button
+          className="btn btn-outline-danger border border-2 btn-transition"
+          onClick={incrementarContador}
+        >
+          +
+        </button>
+      </div>
+      <div>
+        <button className="btn btn-danger btn-transition text-uppercase mr-2 px-4">
+          Add to cart
+        </button>
       </div>
     </div>
   );

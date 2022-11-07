@@ -28,8 +28,14 @@ const ItemDetail = ({ producto }) => {
             <div className="product p-4">
               <div className="d-flex justify-content-between align-items-center">
                 <div className="d-flex align-items-center">
-                  <i className="fa fa-long-arrow-left"></i>
-                  <span className="ms-1">Volver</span>
+                  <a href="#/" className="text-decoration-none text-dark">
+                    <i className="fa fa-long-arrow-left"></i>
+                    <span className="ms-1">Volver</span>
+                  </a>
+                </div>
+                <div>
+                  <i className="fa fa-heart text-muted m-1"></i>
+                  <i className="fa fa-share-alt text-muted m-1"></i>
                 </div>
               </div>
               <div className="mt-4 ">
@@ -66,13 +72,7 @@ const ItemDetail = ({ producto }) => {
                 </div>
               </div>
               <p className="pt-3 font-size-sm">{description}</p>
-              <div className="cart d-flex mt-4 align-items-center">
-                <button className="btn btn-danger btn-transition text-uppercase mr-2 px-4">
-                  Add to cart
-                </button>
-                <i className="fa fa-heart text-muted m-1"></i>
-                <i className="fa fa-share-alt text-muted m-1"></i>
-              </div>
+              {/* Aca va ItemCount */}
             </div>
           </div>
         </div>
