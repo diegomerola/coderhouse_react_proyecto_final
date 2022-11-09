@@ -3,19 +3,26 @@ import ItemDetail from "../ItemDetail/ItemDetail.jsx";
 import { useState, useEffect } from "react";
 import data from "../../utilities/db.js";
 import myPromise from "../../utilities/myPromise";
+import { useParams } from "react-router-dom";
 
 const ItemDetailContainer = () => {
+  // Obtener id:
+  const { id } = useParams();
+
   // UseState para guardar datos de consulta asincronica:
   const [dato, setDato] = useState({});
 
   // UseEffect para cuando el componente este montado:
   useEffect(() => {
     // Hacer consulta asincronica:
-    myPromise(2000, data[3])
+    myPromise(
+      2000,
+      data.find((elemento) => elemento.id === parseInt(id))
+    )
       .then((response) => setDato(response))
       .catch((error) => console.log(error))
       .finally(() => console.log("Consulta finalizada"));
-  }, []);
+  }, [id]);
   return (
     <section>
       <div className="container py-4">

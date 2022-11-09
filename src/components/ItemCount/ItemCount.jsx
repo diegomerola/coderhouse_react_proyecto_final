@@ -17,7 +17,7 @@ const ItemCount = ({ stock, initial }) => {
   };
 
   return (
-    <div className="cart d-flex mt-4 align-items-center">
+    <div className="cart d-flex mt-2 align-items-center">
       <div className="d-flex justify-content-center align-items-center me-3 bold-500">
         <button
           className="btn btn-outline-danger border border-2 btn-transition"

@@ -1,24 +1,26 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Item = ({ producto }) => {
-  const { category, brand, title, price, pictureUrl, stock } = producto;
+  const { category_icon, brand, title, price, pictureUrl, stock, id } =
+    producto;
   return (
     <div className="col-md-8 col-lg-6 col-xl-3 py-4">
       <div className="card text-black card-radius">
-        <div className="">
+        <div>
           <i
-            className={`fa-solid fa-${category} fa-lg pt-4 pb-2 pe-2 ps-3 text-muted`}
+            className={`fa-solid fa-${category_icon} pt-2 pb-1 px-2 text-muted`}
           ></i>
           <span className="text-muted">{brand}</span>
         </div>
         <img src={pictureUrl} className="card-img-top" alt={brand} />
         <div className="card-body bg-color-grey">
-          <div className="text-center line-bottom py-3">
-            <h6 className="card-title text-uppercase">{title}</h6>
+          <div className="text-center">
+            <h6 className="card-title text-uppercase font-size-m">{title}</h6>
             <p className="text-muted mb-2">${price}</p>
-            <button className="btn btn-danger btn-transition">
+            <Link className="btn btn-danger btn-transition" to={`/item/${id}`}>
               Ver Detalle
-            </button>
+            </Link>
           </div>
           <div className="d-flex align-items-center justify-content-between font-weight-bold mt-2">
             <span>Stock Disponible:</span>

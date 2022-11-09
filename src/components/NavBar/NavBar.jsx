@@ -1,16 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import CartWidget from "../CartWidget/CartWidget";
 
 const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow nav-color-bottom">
       <div className="container d-flex justify-content-between align-items-center">
-        <a
+        <Link
           className="navbar-brand text-color-light align-self-center font-size-brand bold-600"
-          href="#/"
+          to={"/"}
         >
           Electro<span className="text-danger ">.</span>
-        </a>
+        </Link>
 
         <button
           className="navbar-toggler border-0"
@@ -31,24 +32,19 @@ const NavBar = () => {
           <div className="flex-fill">
             <ul className="nav navbar-nav d-flex justify-content-between mx-lg-auto">
               <li className="nav-item">
-                <a className="nav-link" href="#/">
-                  Ver Todo
-                </a>
+                <Link className="nav-link" to={"/category/laptops"}>
+                  Laptops
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#/">
-                  Notebooks
-                </a>
+                <Link className="nav-link" to={"/category/tablets"}>
+                  Tablets
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#/">
+                <Link className="nav-link" to={"/category/smartphones"}>
                   Smartphones
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#/">
-                  Accesorios
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

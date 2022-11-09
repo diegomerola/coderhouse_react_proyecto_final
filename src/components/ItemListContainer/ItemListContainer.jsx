@@ -1,9 +1,10 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import ItemList from "../ItemList/ItemList";
-import ItemCount from "../ItemCount/ItemCount";
+/* import ItemCount from "../ItemCount/ItemCount"; */
 import data from "../../utilities/db.js";
 import myPromise from "../../utilities/myPromise";
+import { useParams } from "react-router-dom";
 
 const ItemListContainer = ({ greeting }) => {
   // Destructuring de greeting:
@@ -12,14 +13,29 @@ const ItemListContainer = ({ greeting }) => {
   // UseState para guardar datos de consulta asincronica:
   const [datos, setDatos] = useState([]);
 
-  // UseEffect para cuando el componente este montado:
+  // Obtener idCategory:
+  const { idCategory } = useParams();
+
+  // UseEffect componentDidUpdate:
   useEffect(() => {
     // Hacer consulta asincronica:
-    myPromise(2000, data)
-      .then((response) => setDatos(response))
-      .catch((error) => console.log(error))
-      .finally(() => console.log("Consulta finalizada"));
-  }, []);
+    if (idCategory === undefined) {
+      // Traigo todos los productos:
+      myPromise(2000, data)
+        .then((response) => setDatos(response))
+        .catch((error) => console.log(error))
+        .finally(() => console.log("Consulta finalizada"));
+    } else {
+      // Traigo solo los productos que coinciden con idCategory:
+      myPromise(
+        2000,
+        data.filter((element) => element.category_id === idCategory)
+      )
+        .then((response) => setDatos(response))
+        .catch((error) => console.log(error))
+        .finally(() => console.log("Consulta finalizada"));
+    }
+  }, [idCategory]);
   return (
     <>
       <header>
@@ -33,7 +49,7 @@ const ItemListContainer = ({ greeting }) => {
         </div>
       </header>
       <main>
-        <ItemCount stock={5} initial={1} />
+        {/* <ItemCount stock={5} initial={1} /> */}
         <ItemList datos={datos} />
       </main>
     </>

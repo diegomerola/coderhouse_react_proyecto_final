@@ -1,4 +1,5 @@
 import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
@@ -9,11 +10,17 @@ function App() {
     subtitulo: "Subtitulo de prueba",
   };
   return (
-    <div>
+    <BrowserRouter>
       <NavBar />
-      <ItemListContainer greeting={greeting} />
-      <ItemDetailContainer />
-    </div>
+      <Routes>
+        <Route path="/" element={<ItemListContainer greeting={greeting} />} />
+        <Route
+          path="/category/:idCategory"
+          element={<ItemListContainer greeting={greeting} />}
+        />
+        <Route path="/item/:id" element={<ItemDetailContainer />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
