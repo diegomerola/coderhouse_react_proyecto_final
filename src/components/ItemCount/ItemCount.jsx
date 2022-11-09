@@ -44,14 +44,6 @@ const ItemCount = ({ stock, initial, onAdd }) => {
             Add to cart
           </button>
         )}
-        {/* <button
-          onClick={() => onAdd(count)}
-          className={`${
-            stock ? "" : "disabled"
-          } btn btn-danger btn-transition text-uppercase mr-2 px-4`}
-        >
-          Add to cart
-        </button> */}
       </div>
     </div>
   );
