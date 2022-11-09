@@ -2,7 +2,7 @@ import React from "react";
 import ItemDetail from "../ItemDetail/ItemDetail.jsx";
 import { useState, useEffect } from "react";
 import data from "../../utilities/db.js";
-import myPromise from "../../utilities/myPromise";
+import getItem from "../../utilities/getItem";
 import { useParams } from "react-router-dom";
 
 const ItemDetailContainer = () => {
@@ -15,7 +15,7 @@ const ItemDetailContainer = () => {
   // UseEffect para cuando el componente este montado:
   useEffect(() => {
     // Hacer consulta asincronica:
-    myPromise(
+    getItem(
       2000,
       data.find((elemento) => elemento.id === parseInt(id))
     )

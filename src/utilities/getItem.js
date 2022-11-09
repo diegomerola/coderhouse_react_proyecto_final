@@ -1,5 +1,5 @@
 let isValid = true;
-const myPromise = (time, data) => {
+const getItem = (time, data) => {
   return new Promise((response, reject) => {
     if (isValid) {
       setTimeout(() => {
@@ -11,4 +11,4 @@ const myPromise = (time, data) => {
   });
 };
 
-export default myPromise;
+export default getItem;

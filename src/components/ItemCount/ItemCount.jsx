@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const ItemCount = ({ stock, initial }) => {
+const ItemCount = ({ stock, initial, onAdd }) => {
   // Hooks:
   const [count, setCount] = useState(initial);
 
@@ -8,12 +8,10 @@ const ItemCount = ({ stock, initial }) => {
   const incrementarContador = () => {
     count < stock
       ? setCount(count + 1)
-      : console.log("Error! Mayor que el stock");
+      : alert("Error! Cantidad de productos mayor que el stock");
   };
   const decrementarContador = () => {
-    count > initial
-      ? setCount(count - 1)
-      : console.log("Error! Menor que el stock");
+    count > initial ? setCount(count - 1) : alert("Error! Menor que el stock");
   };
 
   return (
@@ -34,9 +32,26 @@ const ItemCount = ({ stock, initial }) => {
         </button>
       </div>
       <div>
-        <button className="btn btn-danger btn-transition text-uppercase mr-2 px-4">
+        {stock ? (
+          <button
+            onClick={() => onAdd(count)}
+            className="btn btn-danger btn-transition text-uppercase mr-2 px-4"
+          >
+            Add to cart
+          </button>
+        ) : (
+          <button className="btn btn-danger btn-transition text-uppercase mr-2 px-4 disabled">
+            Add to cart
+          </button>
+        )}
+        {/* <button
+          onClick={() => onAdd(count)}
+          className={`${
+            stock ? "" : "disabled"
+          } btn btn-danger btn-transition text-uppercase mr-2 px-4`}
+        >
           Add to cart
-        </button>
+        </button> */}
       </div>
     </div>
   );

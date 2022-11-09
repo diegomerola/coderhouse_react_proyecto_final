@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-/* import ItemCount from "../ItemCount/ItemCount"; */
+import ItemCount from "../ItemCount/ItemCount";
 
 const ItemDetail = ({ producto }) => {
   const {
@@ -19,6 +19,13 @@ const ItemDetail = ({ producto }) => {
     so_version,
     stock,
   } = producto;
+
+  // Funcion para agregar productos:
+  const onAdd = (cantidad) => {
+    cantidad > 0
+      ? alert("Cantidad de productos agregados: " + cantidad)
+      : alert("Error! Debe agregar minimo un producto");
+  };
   return (
     <div className="col-md-8 col-xl-10 pt-5">
       <div className="card border-0">
@@ -83,7 +90,7 @@ const ItemDetail = ({ producto }) => {
                 <span>Stock Disponible:</span>
                 <span className="bg-dark mx-2 p-2 text-light">{stock}</span>
               </div>
-              {/* <ItemCount stock={stock} initial={1} /> */}
+              <ItemCount stock={stock} initial={0} onAdd={onAdd} />
             </div>
           </div>
         </div>

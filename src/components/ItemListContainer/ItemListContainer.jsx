@@ -1,9 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import ItemList from "../ItemList/ItemList";
-/* import ItemCount from "../ItemCount/ItemCount"; */
 import data from "../../utilities/db.js";
-import myPromise from "../../utilities/myPromise";
+import getItem from "../../utilities/getItem";
 import { useParams } from "react-router-dom";
 
 const ItemListContainer = ({ greeting }) => {
@@ -21,13 +20,13 @@ const ItemListContainer = ({ greeting }) => {
     // Hacer consulta asincronica:
     if (idCategory === undefined) {
       // Traigo todos los productos:
-      myPromise(2000, data)
+      getItem(2000, data)
         .then((response) => setDatos(response))
         .catch((error) => console.log(error))
         .finally(() => console.log("Consulta finalizada"));
     } else {
       // Traigo solo los productos que coinciden con idCategory:
-      myPromise(
+      getItem(
         2000,
         data.filter((element) => element.category_id === idCategory)
       )
@@ -49,7 +48,6 @@ const ItemListContainer = ({ greeting }) => {
         </div>
       </header>
       <main>
-        {/* <ItemCount stock={5} initial={1} /> */}
         <ItemList datos={datos} />
       </main>
     </>

@@ -18,7 +18,7 @@ const data = [
     price: 100000,
     pictureUrl:
       "https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/4.webp",
-    stock: 20,
+    stock: 0,
   },
   {
     id: 2,
