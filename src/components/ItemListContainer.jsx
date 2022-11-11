@@ -1,8 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import ItemList from "../ItemList/ItemList";
-import data from "../../utilities/db.js";
-import getItem from "../../utilities/getItem";
+import ItemList from "./ItemList";
+import data from "../utilities/db.js";
+import getItem from "../utilities/getItem";
 import { useParams } from "react-router-dom";
 
 const ItemListContainer = ({ greeting }) => {

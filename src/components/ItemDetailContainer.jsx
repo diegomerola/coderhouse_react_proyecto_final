@@ -1,8 +1,11 @@
 import React from "react";
-import ItemDetail from "../ItemDetail/ItemDetail.jsx";
+/* import ItemDetail from "../ItemDetail.jsx"; */
+import ItemDetail from "./ItemDetail";
 import { useState, useEffect } from "react";
-import data from "../../utilities/db.js";
-import getItem from "../../utilities/getItem";
+import data from "../utilities/db.js";
+import getItem from "../utilities/getItem";
+/* import data from "../../utilities/db.js"; */
+/* import getItem from "../../utilities/getItem"; */
 import { useParams } from "react-router-dom";
 
 const ItemDetailContainer = () => {
