@@ -1,8 +1,13 @@
 import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import ItemCount from "./ItemCount";
 
 const ItemDetail = ({ producto }) => {
+  // State para cantidad de productos seleccionados:
+  const [cantProductos, setCantProductos] = useState(0);
+
+  // Destructuring de producto:
   const {
     category_id,
     brand,
@@ -25,6 +30,7 @@ const ItemDetail = ({ producto }) => {
     cantidad > 0
       ? alert("Cantidad de productos agregados: " + cantidad)
       : alert("Error! Debe agregar minimo un producto");
+    setCantProductos(cantidad);
   };
   return (
     <div className="col-md-8 col-xl-10 pt-5">
@@ -90,7 +96,16 @@ const ItemDetail = ({ producto }) => {
                 <span>Stock Disponible:</span>
                 <span className="bg-dark mx-2 p-2 text-light">{stock}</span>
               </div>
-              <ItemCount stock={stock} initial={0} onAdd={onAdd} />
+              {cantProductos === 0 ? (
+                <ItemCount stock={stock} initial={0} onAdd={onAdd} />
+              ) : (
+                <Link
+                  to={"/cart"}
+                  className="btn btn-danger btn-transition text-uppercase mr-2 px-4 me-3 mt-2 bold-500"
+                >
+                  Checkout
+                </Link>
+              )}
             </div>
           </div>
         </div>
