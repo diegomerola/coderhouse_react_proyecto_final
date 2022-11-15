@@ -16,7 +16,7 @@ const ItemDetailContainer = () => {
   useEffect(() => {
     // Hacer consulta asincronica:
     getItem(
-      2000,
+      0,
       data.find((elemento) => elemento.id === parseInt(id))
     )
       .then((response) => setDato(response))

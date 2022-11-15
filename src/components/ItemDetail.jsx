@@ -1,4 +1,6 @@
 import React from "react";
+import { useContext } from "react";
+import { CartContext } from "./CartContext";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import ItemCount from "./ItemCount";
@@ -6,6 +8,7 @@ import ItemCount from "./ItemCount";
 const ItemDetail = ({ producto }) => {
   // State para cantidad de productos seleccionados:
   const [cantProductos, setCantProductos] = useState(0);
+  const { addToCart } = useContext(CartContext);
 
   // Destructuring de producto:
   const {
@@ -31,6 +34,7 @@ const ItemDetail = ({ producto }) => {
       ? alert("Cantidad de productos agregados: " + cantidad)
       : alert("Error! Debe agregar minimo un producto");
     setCantProductos(cantidad);
+    addToCart(producto, cantidad);
   };
   return (
     <div className="col-md-8 col-xl-10 pt-5">

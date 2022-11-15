@@ -20,7 +20,7 @@ const ItemListContainer = ({ greeting }) => {
     // Hacer consulta asincronica:
     if (idCategory === undefined) {
       // Traigo todos los productos:
-      getItem(2000, data)
+      getItem(0, data)
         .then((response) => setDatos(response))
         .catch((error) => console.log(error))
         .finally(() => console.log("Consulta finalizada"));
