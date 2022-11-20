@@ -34,7 +34,7 @@ const ItemDetail = ({ producto }) => {
       ? alert("Cantidad de productos agregados: " + cantidad)
       : alert("Error! Debe agregar minimo un producto");
     setCantProductos(cantidad);
-    addToCart(producto, cantidad);
+    addToCart({ ...producto, cantidad: cantidad });
   };
   return (
     <div className="col-md-8 col-xl-10 pt-5">

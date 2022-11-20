@@ -8,32 +8,34 @@ const CartContextProvider = (props) => {
   // Estado local:
   const [cartList, setCartList] = useState([]);
 
-  // Funcion para agregar un producto:
-  const addToCart = (item, qty) => {
+  // Funcion para agregar productos:
+  const addToCart = (item) => {
     // Buscar si ya existe el producto en cartList:
     const findItem = cartList.find(
-      (element) => Number(item.id) === Number(element.idItem)
+      (element) => Number(item.id) === Number(element.id)
     );
-    // Si existe se agrega propiedad qtyItem, aumenta su cantidad y lo devuelve:
-    findItem
-      ? (findItem.qtyItem = findItem.qtyItem + qty)
-      : setCartList([
-          ...cartList,
-          {
-            idItem: item.id,
-            pictureUrlItem: item.pictureUrl,
-            titleItem: item.title,
-            priceItem: item.price,
-            qtyItem: qty,
-          },
-        ]);
-    console.log(findItem);
+
+    if (findItem) {
+      // Obtener el indice del item repetido:
+      const indice = cartList.findIndex((elemento) => elemento.id === item.id);
+
+      // Guardar la cantidad anterior:
+      const cantidadAnterior = cartList[indice].cantidad;
+
+      // Calcular la cantidad actual:
+      item.cantidad += cantidadAnterior;
+
+      // Eliminar item repetido:
+      cartList.splice(indice, 1);
+    }
+    // Actualizar cartList:
+    setCartList([...cartList, item]);
   };
 
-  // Funcion para eliminar un producto
+  // Funcion para eliminar un producto:
   const deleteItem = (id) => {
     console.log(id);
-    const nuevoArreglo = cartList.filter((element) => element.idItem !== id);
+    const nuevoArreglo = cartList.filter((element) => element.id !== id);
     setCartList(nuevoArreglo);
   };
 
@@ -42,9 +44,36 @@ const CartContextProvider = (props) => {
     setCartList([]);
   };
 
+  // Funcion para obtener la cantidad de productos:
+  const calcItemsQty = () => {
+    return cartList.reduce((acc, item) => acc + item.cantidad, 0);
+  };
+
+  // Funcion para obtener el total por producto:
+  const calcItemSubTotal = (cantidad, precio) => {
+    return cantidad * precio;
+  };
+
+  // Funcion para obtener el total de todos los productos:
+  const calcItemTotal = () => {
+    const total = cartList.reduce(
+      (acc, item) => acc + item.cantidad * item.price,
+      0
+    );
+    return total;
+  };
+
   return (
     <CartContext.Provider
-      value={{ cartList, addToCart, deleteItem, removeList }}
+      value={{
+        cartList,
+        addToCart,
+        deleteItem,
+        removeList,
+        calcItemsQty,
+        calcItemSubTotal,
+        calcItemTotal,
+      }}
     >
       {props.children}
     </CartContext.Provider>
