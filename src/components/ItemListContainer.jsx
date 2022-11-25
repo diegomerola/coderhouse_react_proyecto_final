@@ -1,9 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import ItemList from "./ItemList";
-import data from "../utilities/db.js";
-import getItem from "../utilities/getItem";
 import { useParams } from "react-router-dom";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../utilities/firebaseConfig";
 
 const ItemListContainer = ({ greeting }) => {
   // Destructuring de greeting:
@@ -17,24 +17,25 @@ const ItemListContainer = ({ greeting }) => {
 
   // UseEffect componentDidUpdate:
   useEffect(() => {
-    // Hacer consulta asincronica:
-    if (idCategory === undefined) {
-      // Traigo todos los productos:
-      getItem(0, data)
-        .then((response) => setDatos(response))
-        .catch((error) => console.log(error))
-        .finally(() => console.log("Consulta finalizada"));
-    } else {
-      // Traigo solo los productos que coinciden con idCategory:
-      getItem(
-        2000,
-        data.filter((element) => element.category_id === idCategory)
-      )
-        .then((response) => setDatos(response))
-        .catch((error) => console.log(error))
-        .finally(() => console.log("Consulta finalizada"));
+    // Consulta Firebase:
+    async function fetchData() {
+      const querySnapshot = await getDocs(collection(db, "productos"));
+      const data = querySnapshot.docs.map((item) => ({
+        id: item.id,
+        ...item.data(),
+      }));
+      if (idCategory === undefined) {
+        setDatos(data);
+      } else {
+        const dataFilter = data.filter(
+          (element) => element.category_id === idCategory
+        );
+        setDatos(dataFilter);
+      }
     }
+    fetchData();
   }, [idCategory]);
+
   return (
     <>
       <header>

@@ -1,9 +1,9 @@
 import React from "react";
 import ItemDetail from "./ItemDetail";
 import { useState, useEffect } from "react";
-import data from "../utilities/db.js";
-import getItem from "../utilities/getItem";
 import { useParams } from "react-router-dom";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../utilities/firebaseConfig";
 
 const ItemDetailContainer = () => {
   // Obtener id:
@@ -12,17 +12,21 @@ const ItemDetailContainer = () => {
   // UseState para guardar datos de consulta asincronica:
   const [dato, setDato] = useState({});
 
-  // UseEffect para cuando el componente este montado:
+  // UseEffect componentDidUpdate:
   useEffect(() => {
-    // Hacer consulta asincronica:
-    getItem(
-      2000,
-      data.find((elemento) => elemento.id === parseInt(id))
-    )
-      .then((response) => setDato(response))
-      .catch((error) => console.log(error))
-      .finally(() => console.log("Consulta finalizada"));
+    // Consulta Firebase:
+    async function fetchData() {
+      const querySnapshot = await getDocs(collection(db, "productos"));
+      const data = querySnapshot.docs.map((item) => ({
+        id: item.id,
+        ...item.data(),
+      }));
+      const dataFind = data.find((elemento) => elemento.id === id);
+      setDato(dataFind);
+    }
+    fetchData();
   }, [id]);
+
   return (
     <section>
       <div className="container py-4">
