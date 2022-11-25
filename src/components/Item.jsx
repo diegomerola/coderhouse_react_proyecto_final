@@ -19,7 +19,7 @@ const Item = ({ producto }) => {
             <h6 className="card-title text-uppercase font-size-m">{title}</h6>
             <p className="text-muted mb-2">${price}</p>
             <Link className="btn btn-danger btn-transition" to={`/item/${id}`}>
-              Ver Detalle
+              More Details
             </Link>
           </div>
           <div className="d-flex align-items-center justify-content-between font-weight-bold mt-2">

@@ -12,7 +12,6 @@ const ItemDetail = ({ producto }) => {
 
   // Destructuring de producto:
   const {
-    category_id,
     brand,
     title,
     price,
@@ -49,12 +48,9 @@ const ItemDetail = ({ producto }) => {
             <div className="product p-4">
               <div className="d-flex justify-content-between align-items-center">
                 <div className="d-flex align-items-center">
-                  <Link
-                    to={`/category/${category_id}`}
-                    className="text-decoration-none text-dark"
-                  >
+                  <Link to={"/"} className="text-decoration-none text-dark">
                     <i className="fa fa-long-arrow-left"></i>
-                    <span className="ms-1">Volver</span>
+                    <span className="ms-1">Back to shop</span>
                   </Link>
                 </div>
                 <div>

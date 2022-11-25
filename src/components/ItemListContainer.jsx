@@ -2,8 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../utilities/firebaseConfig";
+import { fetchCategory } from "../utilities/firestoreFetch";
 
 const ItemListContainer = ({ greeting }) => {
   // Destructuring de greeting:
@@ -15,26 +14,19 @@ const ItemListContainer = ({ greeting }) => {
   // Obtener idCategory:
   const { idCategory } = useParams();
 
-  // UseEffect componentDidUpdate:
+  //UseEffect componentDidUpdate:
   useEffect(() => {
-    // Consulta Firebase:
-    async function fetchData() {
-      const querySnapshot = await getDocs(collection(db, "productos"));
-      const data = querySnapshot.docs.map((item) => ({
-        id: item.id,
-        ...item.data(),
-      }));
-      if (idCategory === undefined) {
-        setDatos(data);
-      } else {
-        const dataFilter = data.filter(
-          (element) => element.category_id === idCategory
-        );
-        setDatos(dataFilter);
-      }
-    }
-    fetchData();
+    fetchCategory(idCategory)
+      .then((result) => setDatos(result))
+      .catch((err) => console.log(err));
   }, [idCategory]);
+
+  //UseEffect componentWillUnmount:
+  useEffect(() => {
+    return () => {
+      setDatos([]);
+    };
+  }, []);
 
   return (
     <>
