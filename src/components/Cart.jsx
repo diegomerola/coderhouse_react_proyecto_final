@@ -1,11 +1,69 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "./CartContext";
+import {
+  serverTimestamp,
+  doc,
+  setDoc,
+  collection,
+  updateDoc,
+  increment,
+} from "firebase/firestore";
+import { db } from "../utilities/firebaseConfig";
 
 const Cart = () => {
+  // Obtener contexto:
   const test = useContext(CartContext);
   const { cartList, deleteItem, removeList, calcItemSubTotal, calcItemTotal } =
     test;
+
+  // Funcion para crear una orden de compra:
+  const createOrder = () => {
+    let order = {
+      buyer: {
+        name: "An Ecommerce Client",
+        email: "client@coderhouse.com",
+        phone: "123456789",
+      },
+      total: calcItemTotal(), // calcular el importe total de la orden.
+      items: cartList.map((element) => ({
+        id: Number(element.id),
+        price: element.price,
+        title: element.title,
+        qty: element.cantidad,
+      })), // mapear carrito para agregar solo los datos solicitados de cada producto.
+      date: serverTimestamp(), // método de firebase para asignar la fecha y hora del servidor.
+    };
+
+    // Funcion para agregar una orden nueva a firebase:
+    const firestoreAddOrder = async () => {
+      // Crear la coleccion orders con ID automatico:
+      const newOrderRef = doc(collection(db, "orders"));
+
+      // Agregar order:
+      await setDoc(newOrderRef, order);
+      return newOrderRef;
+    };
+    // Ejecutar firestoreAddOrder:
+    firestoreAddOrder()
+      .then((response) => {
+        // Mostrar datos de la orden creada:
+        alert("Orden ID:" + response.id);
+
+        // Actualizar stock:
+        cartList.forEach(async (element) => {
+          const itemRef = doc(db, "productos", element.id);
+          await updateDoc(itemRef, {
+            stock: increment(-element.cantidad),
+          });
+        });
+
+        // Limpiar carrito:
+        removeList();
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <main className="page">
       <section className="shopping-cart ">
@@ -138,6 +196,7 @@ const Cart = () => {
                         <span className="price">${calcItemTotal()}</span>
                       </div>
                       <button
+                        onClick={createOrder}
                         type="button"
                         className="btn btn-danger btn-lg btn-block"
                       >
