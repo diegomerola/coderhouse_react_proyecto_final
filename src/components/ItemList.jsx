@@ -1,5 +1,6 @@
 import React from "react";
 import Item from "./Item";
+import Spinner from "./Spinner";
 
 const ItemList = ({ datos }) => {
   return (
@@ -13,7 +14,7 @@ const ItemList = ({ datos }) => {
                   <Item key={element.id} producto={element} />
                 ))
               ) : (
-                <p>Cargando Componentes...</p>
+                <Spinner />
               )}
             </div>
           </div>

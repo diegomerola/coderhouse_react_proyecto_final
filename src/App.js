@@ -5,6 +5,7 @@ import CartContextProvider from "./components/CartContext";
 import NavBar from "./components/NavBar";
 import ItemListContainer from "./components/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetailContainer";
+import Footer from "./components/Footer";
 
 function App() {
   const greeting = {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/item/:id" element={<ItemDetailContainer />} />
           <Route path="/cart" element={<Cart />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </CartContextProvider>
   );

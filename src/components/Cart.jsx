@@ -65,7 +65,7 @@ const Cart = () => {
   };
 
   return (
-    <main className="page">
+    <main className="page container-full">
       <section className="shopping-cart ">
         <div className="container pt-5">
           <div className="row text-center pt-2">
