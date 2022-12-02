@@ -8,22 +8,21 @@ import ItemDetailContainer from "./components/ItemDetailContainer";
 import Footer from "./components/Footer";
 
 function App() {
-  const greeting = {
-    titulo: "Bienvenidxs a Electro!",
-    subtitulo: "Subtitulo de prueba",
-  };
   return (
     <CartContextProvider>
       <BrowserRouter>
         <NavBar />
         <Routes>
-          <Route path="/" element={<ItemListContainer greeting={greeting} />} />
+          <Route
+            path="/"
+            element={<ItemListContainer greeting={"Welcome to Electro!"} />}
+          />
           <Route
             path="/category/:idCategory"
-            element={<ItemListContainer greeting={greeting} />}
+            element={<ItemListContainer greeting={"Welcome to Electro!"} />}
           />
           <Route path="/item/:id" element={<ItemDetailContainer />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<Cart greeting={"Your Cart"} />} />
         </Routes>
         <Footer />
       </BrowserRouter>
