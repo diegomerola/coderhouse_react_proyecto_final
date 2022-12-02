@@ -20,7 +20,7 @@ const ItemDetailContainer = () => {
   }, [id]);
 
   return (
-    <main className="container-full">
+    <main>
       <section>
         <div className="container py-4">
           <div className="row">

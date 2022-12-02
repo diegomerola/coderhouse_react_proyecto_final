@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { msjAlert } from "../utilities/sweetAlertMsj";
 
 const ItemCount = ({ stock, initial, onAdd }) => {
   // Hooks:
@@ -6,12 +7,18 @@ const ItemCount = ({ stock, initial, onAdd }) => {
 
   // Funciones:
   const incrementarContador = () => {
-    count < stock
+    stock === 0
+      ? msjAlert("error", "Error! Stock no disponible")
+      : count < stock
       ? setCount(count + 1)
-      : alert("Error! Cantidad de productos mayor que el stock");
+      : msjAlert("error", "Error! Mayor que el stock");
   };
   const decrementarContador = () => {
-    count > initial ? setCount(count - 1) : alert("Error! Menor que el stock");
+    stock === 0
+      ? msjAlert("error", "Error! Stock no disponible")
+      : count > initial
+      ? setCount(count - 1)
+      : msjAlert("error", "Error! Seleccionar un producto");
   };
 
   return (

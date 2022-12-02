@@ -10,6 +10,7 @@ import {
   increment,
 } from "firebase/firestore";
 import { db } from "../utilities/firebaseConfig";
+import { showOrder } from "../utilities/sweetAlertMsj";
 
 const Cart = () => {
   // Obtener contexto:
@@ -48,7 +49,7 @@ const Cart = () => {
     firestoreAddOrder()
       .then((response) => {
         // Mostrar datos de la orden creada:
-        alert("Orden ID:" + response.id);
+        showOrder("Order created!", response.id);
 
         // Actualizar stock:
         cartList.forEach(async (element) => {
@@ -65,31 +66,31 @@ const Cart = () => {
   };
 
   return (
-    <main className="page container-full">
-      <section className="shopping-cart ">
-        <div className="container pt-5">
-          <div className="row text-center pt-2">
-            <div className="col-lg-6 m-auto">
-              <h1 className="font-size-md light-300">Carrito de Compras</h1>
-              <h4 className="light-300">Subtitulo de prueba</h4>
-            </div>
+    <div className="">
+      <div className="container pt-5">
+        <div className="row text-center pt-2">
+          <div className="col-lg-6 m-auto">
+            <h1 className="font-size-md light-300">Carrito de Compras</h1>
+            <h4 className="light-300">Subtitulo de prueba</h4>
           </div>
-          {cartList.length === 0 ? (
-            <>
-              <div className="d-flex justify-content-between">
-                <div className="d-flex align-items-center mb-2">
-                  <Link to={"/"} className="text-decoration-none text-dark">
-                    <i className="fa fa-long-arrow-left"></i>
-                    <span className="ms-1">Back to shop</span>
-                  </Link>
-                </div>
-                <div>
-                  <p className="text-center text-muted">Carrito Vacio</p>
-                </div>
+        </div>
+        {cartList.length === 0 ? (
+          <main className="container-full">
+            <div className="d-flex justify-content-between">
+              <div className="d-flex align-items-center mb-2">
+                <Link to={"/"} className="text-decoration-none text-dark">
+                  <i className="fa fa-long-arrow-left"></i>
+                  <span className="ms-1">Back to shop</span>
+                </Link>
               </div>
-            </>
-          ) : (
-            <>
+              <div>
+                <p className="text-center text-muted">Carrito Vacio</p>
+              </div>
+            </div>
+          </main>
+        ) : (
+          <>
+            <main className="">
               <div className="d-flex justify-content-between mb-2">
                 <div className="d-flex align-items-center">
                   <Link to={"/"} className="text-decoration-none text-dark">
@@ -105,112 +106,115 @@ const Cart = () => {
                   </button>
                 </div>
               </div>
+              <section className="shopping-cart">
+                <div className="content">
+                  <div className="row">
+                    <div className="col-md-12 col-lg-9">
+                      <div className="items">
+                        {cartList.map((element) => (
+                          <div className="product" key={element.id}>
+                            <div className="row">
+                              <div className="col-md-3">
+                                <Link
+                                  to={`/item/${element.id}`}
+                                  className="text-decoration-none text-dark"
+                                >
+                                  <img
+                                    className="img-fluid mx-auto d-block image"
+                                    src={element.pictureUrl}
+                                    alt={element.brand}
+                                  />
+                                </Link>
+                              </div>
+                              <div className="col-md-9">
+                                <div className="info">
+                                  <div className="row">
+                                    <div className="col-md-8 product-name">
+                                      <div className="product-name">
+                                        <h6 className="bold-600 mb-1">
+                                          {element.title}
+                                        </h6>
 
-              <div className="content">
-                <div className="row">
-                  <div className="col-md-12 col-lg-9">
-                    <div className="items">
-                      {cartList.map((element) => (
-                        <div className="product" key={element.id}>
-                          <div className="row">
-                            <div className="col-md-3">
-                              <Link
-                                to={`/item/${element.id}`}
-                                className="text-decoration-none text-dark"
-                              >
-                                <img
-                                  className="img-fluid mx-auto d-block image"
-                                  src={element.pictureUrl}
-                                  alt={element.brand}
-                                />
-                              </Link>
-                            </div>
-                            <div className="col-md-9">
-                              <div className="info">
-                                <div className="row">
-                                  <div className="col-md-8 product-name">
-                                    <div className="product-name">
-                                      <h6 className="bold-600 mb-1">
-                                        {element.title}
-                                      </h6>
-
-                                      <div className="product-info">
-                                        <div>
-                                          <span>Cantidad: </span>
-                                          <span className="value">
-                                            {element.cantidad} Items
-                                          </span>
-                                        </div>
-                                        <div>
-                                          <span>Precio Unitario: </span>
-                                          <span className="value">
-                                            $ {element.price}
-                                          </span>
+                                        <div className="product-info">
+                                          <div>
+                                            <span>Cantidad: </span>
+                                            <span className="value">
+                                              {element.cantidad} Items
+                                            </span>
+                                          </div>
+                                          <div>
+                                            <span>Precio Unitario: </span>
+                                            <span className="value">
+                                              $ {element.price}
+                                            </span>
+                                          </div>
                                         </div>
                                       </div>
                                     </div>
-                                  </div>
-                                  <div className="col-md-2 text-center ">
-                                    <h6 className="bold-600 mb-1">Subtotal:</h6>
-                                    <span>
-                                      $
-                                      {calcItemSubTotal(
-                                        element.cantidad,
-                                        element.price
-                                      )}
-                                    </span>
-                                  </div>
-                                  <div className="col-md-2 text-center text-muted p-0">
-                                    <button className="btn-delete">
-                                      <i
-                                        onClick={() => deleteItem(element.id)}
-                                        className="fa-solid fa-trash"
-                                      ></i>
-                                    </button>
+                                    <div className="col-md-2 text-center ">
+                                      <h6 className="bold-600 mb-1">
+                                        Subtotal:
+                                      </h6>
+                                      <span>
+                                        $
+                                        {calcItemSubTotal(
+                                          element.cantidad,
+                                          element.price
+                                        )}
+                                      </span>
+                                    </div>
+                                    <div className="col-md-2 text-center text-muted p-0">
+                                      <button className="btn-delete">
+                                        <i
+                                          onClick={() => deleteItem(element.id)}
+                                          className="fa-solid fa-trash"
+                                        ></i>
+                                      </button>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                  <div className="col-md-12 col-lg-3">
-                    <div className="summary">
-                      <h3>Resumen</h3>
-                      <div className="summary-item">
-                        <span className="text">Subtotal</span>
-                        <span className="price">${calcItemTotal()}</span>
+                    <div className="col-md-12 col-lg-3">
+                      <div className="summary">
+                        <h3>Resumen</h3>
+                        <div className="summary-item">
+                          <span className="text">Subtotal</span>
+                          <span className="price">${calcItemTotal()}</span>
+                        </div>
+                        <div className="summary-item">
+                          <span className="text">Descuento</span>
+                          <span className="price">$0</span>
+                        </div>
+                        <div className="summary-item">
+                          <span className="text">Envio</span>
+                          <span className="price">$0</span>
+                        </div>
+                        <div className="summary-item mt-2">
+                          <span className="text">Total</span>
+                          <span className="price">${calcItemTotal()}</span>
+                        </div>
+                        <button
+                          onClick={createOrder}
+                          type="button"
+                          className="btn btn-danger btn-lg btn-block"
+                        >
+                          Checkout
+                        </button>
                       </div>
-                      <div className="summary-item">
-                        <span className="text">Descuento</span>
-                        <span className="price">$0</span>
-                      </div>
-                      <div className="summary-item">
-                        <span className="text">Envio</span>
-                        <span className="price">$0</span>
-                      </div>
-                      <div className="summary-item mt-2">
-                        <span className="text">Total</span>
-                        <span className="price">${calcItemTotal()}</span>
-                      </div>
-                      <button
-                        onClick={createOrder}
-                        type="button"
-                        className="btn btn-danger btn-lg btn-block"
-                      >
-                        Checkout
-                      </button>
                     </div>
                   </div>
                 </div>
-              </div>
-            </>
-          )}
-        </div>
-      </section>
-    </main>
+              </section>
+            </main>
+          </>
+        )}
+      </div>
+    </div>
   );
 };
 

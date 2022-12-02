@@ -4,6 +4,7 @@ import { CartContext } from "./CartContext";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import ItemCount from "./ItemCount";
+import { msjAlert } from "../utilities/sweetAlertMsj";
 
 const ItemDetail = ({ producto }) => {
   // State para cantidad de productos seleccionados:
@@ -30,13 +31,14 @@ const ItemDetail = ({ producto }) => {
   // Funcion para agregar productos:
   const onAdd = (cantidad) => {
     cantidad > 0
-      ? alert("Cantidad de productos agregados: " + cantidad)
-      : alert("Error! Debe agregar minimo un producto");
+      ? msjAlert("success", `Productos seleccionados: ${cantidad}`)
+      : msjAlert("error", "No disponible");
     setCantProductos(cantidad);
     addToCart({ ...producto, cantidad: cantidad });
   };
+
   return (
-    <div className="col-md-8 col-xl-10 pt-5">
+    <div className="col-md-8 col-xl-10 py-5">
       <div className="card border-0">
         <div className="row">
           <div className="col-xl-6">
