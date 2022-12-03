@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { formatNumber } from "../utilities/formatNumber";
 
 const Item = ({ producto }) => {
   const { category_icon, brand, title, price, pictureUrl, stock, id } =
@@ -17,7 +18,7 @@ const Item = ({ producto }) => {
         <div className="card-body bg-color-grey">
           <div className="text-center">
             <h6 className="card-title text-uppercase font-size-m">{title}</h6>
-            <p className="text-muted mb-2">${price}</p>
+            <p className="text-muted mb-2">${formatNumber(price)}</p>
             <Link className="btn btn-danger btn-transition" to={`/item/${id}`}>
               More Details
             </Link>

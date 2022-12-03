@@ -30,7 +30,6 @@ const ItemDetailContainer = () => {
                   <ItemDetail key={dato.id} producto={dato} />
                 ) : (
                   <>
-                    {/* <p>Cargando Componente...</p> */}
                     <Spinner />
                   </>
                 )}

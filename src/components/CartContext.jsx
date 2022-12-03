@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { createContext } from "react";
+import { useState, createContext } from "react";
 
 // Crear contexto:
 export const CartContext = createContext();
@@ -34,7 +33,6 @@ const CartContextProvider = (props) => {
 
   // Funcion para eliminar un producto:
   const deleteItem = (id) => {
-    console.log(id);
     const nuevoArreglo = cartList.filter((element) => element.id !== id);
     setCartList(nuevoArreglo);
   };

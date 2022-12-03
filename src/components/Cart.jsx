@@ -11,6 +11,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../utilities/firebaseConfig";
 import { showOrder } from "../utilities/sweetAlertMsj";
+import { formatNumber } from "../utilities/formatNumber";
 
 const Cart = ({ greeting }) => {
   // Obtener contexto:
@@ -161,9 +162,11 @@ const Cart = ({ greeting }) => {
                                       </h6>
                                       <span>
                                         $
-                                        {calcItemSubTotal(
-                                          element.cantidad,
-                                          element.price
+                                        {formatNumber(
+                                          calcItemSubTotal(
+                                            element.cantidad,
+                                            element.price
+                                          )
                                         )}
                                       </span>
                                     </div>
@@ -188,19 +191,23 @@ const Cart = ({ greeting }) => {
                         <h3>Resumen</h3>
                         <div className="summary-item">
                           <span className="text">Subtotal</span>
-                          <span className="price">${calcItemTotal()}</span>
+                          <span className="price">
+                            ${formatNumber(calcItemTotal())}
+                          </span>
                         </div>
                         <div className="summary-item">
-                          <span className="text">Descuento</span>
+                          <span className="text">Discount</span>
                           <span className="price">$0</span>
                         </div>
                         <div className="summary-item">
-                          <span className="text">Envio</span>
+                          <span className="text">Shipping</span>
                           <span className="price">$0</span>
                         </div>
                         <div className="summary-item mt-2">
                           <span className="text">Total</span>
-                          <span className="price">${calcItemTotal()}</span>
+                          <span className="price">
+                            ${formatNumber(calcItemTotal())}
+                          </span>
                         </div>
                         <button
                           onClick={createOrder}

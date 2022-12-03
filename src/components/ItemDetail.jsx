@@ -1,10 +1,10 @@
 import React from "react";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { CartContext } from "./CartContext";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import ItemCount from "./ItemCount";
 import { msjAlert } from "../utilities/sweetAlertMsj";
+import { formatNumber } from "../utilities/formatNumber";
 
 const ItemDetail = ({ producto }) => {
   // State para cantidad de productos seleccionados:
@@ -63,7 +63,9 @@ const ItemDetail = ({ producto }) => {
               <div className="mt-4 ">
                 <h6 className="card-title text-uppercase mt-2">{title}</h6>
                 <div className="d-flex flex-row align-items-center ">
-                  <span className="text-danger bold-600 ">${price}</span>
+                  <span className="text-danger bold-600 ">
+                    ${formatNumber(price)}
+                  </span>
                   <div className="ms-2 mb-1">
                     <span className="badge bg-primary rounded-pill">
                       {promo}% OFF
