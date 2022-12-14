@@ -105,7 +105,7 @@ const ItemDetail = ({ producto }) => {
               ) : (
                 <Link
                   to={"/cart"}
-                  className="btn btn-danger btn-transition text-uppercase mr-2 px-4 me-3 mt-2 bold-500"
+                  className="btn btn-danger btn-transition text-uppercase mr-2 px-4 me-3 mt-2 bold-500 border-radius-0"
                 >
                   Checkout
                 </Link>

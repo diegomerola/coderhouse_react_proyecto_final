@@ -105,8 +105,11 @@ const Cart = ({ greeting }) => {
                 </div>
 
                 <div className="d-flex align-items-center">
-                  <button className="btn btn-dark" onClick={removeList}>
-                    <span className="me-1">Clear All</span>
+                  <button
+                    className="btn btn-dark border-radius-0"
+                    onClick={removeList}
+                  >
+                    <span className="me-1 ">Clear All</span>
                     <i className="fa-solid fa-circle-minus"></i>
                   </button>
                 </div>
@@ -212,7 +215,7 @@ const Cart = ({ greeting }) => {
                         <button
                           onClick={createOrder}
                           type="button"
-                          className="btn btn-danger btn-lg btn-block"
+                          className="btn btn-danger btn-lg btn-block border-radius-0"
                         >
                           Checkout
                         </button>

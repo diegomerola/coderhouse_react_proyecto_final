@@ -42,12 +42,12 @@ const ItemCount = ({ stock, initial, onAdd }) => {
         {stock ? (
           <button
             onClick={() => onAdd(count)}
-            className="btn btn-danger btn-transition text-uppercase mr-2 px-4"
+            className="btn btn-danger btn-transition text-uppercase mr-2 px-4 border-radius-0"
           >
             Add to cart
           </button>
         ) : (
-          <button className="btn btn-danger btn-transition text-uppercase mr-2 px-4 disabled">
+          <button className="btn btn-danger btn-transition text-uppercase mr-2 px-4 disabled border-radius-0">
             Add to cart
           </button>
         )}
