@@ -1,11 +1,19 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 
 // Crear contexto:
 export const CartContext = createContext();
 
 const CartContextProvider = (props) => {
   // Estado local:
-  const [cartList, setCartList] = useState([]);
+  const [cartList, setCartList] = useState(
+    JSON.parse(localStorage.getItem("cartList")) || []
+  );
+
+  // UseEffect para localStorage de cartList:
+  useEffect(() => {
+    // Poner en LS:
+    localStorage.setItem("cartList", JSON.stringify(cartList));
+  }, [cartList]);
 
   // Funcion para agregar productos:
   const addToCart = (item) => {
