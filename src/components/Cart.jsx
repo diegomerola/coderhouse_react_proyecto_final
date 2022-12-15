@@ -89,7 +89,9 @@ const Cart = ({ greeting }) => {
                 </Link>
               </div>
               <div>
-                <p className="text-center text-muted">Your Cart is Empty!</p>
+                <p className="mt-2 text-center text-muted">
+                  Your Cart is Empty!
+                </p>
               </div>
             </div>
           </main>

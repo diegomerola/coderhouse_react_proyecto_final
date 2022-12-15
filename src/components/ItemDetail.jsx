@@ -73,12 +73,12 @@ const ItemDetail = ({ producto }) => {
                   </div>
                 </div>
               </div>
-              <div className="d-flex align-items-center line-bottom pt-2 pb-2 font-size-m ">
-                <div className="me-1">
+              <div className="list-details border-line-bottom pt-2 pb-2 font-size-m ">
+                <div className="mx-1">
                   <i className="fa-solid fa-display me-1"></i>
                   <span>{screenSize}''</span>
                 </div>
-                <div className="mx-1">
+                <div className="mx-1 details">
                   <i className="fa-solid fa-microchip me-1"></i>
                   <span>{processor}</span>
                 </div>

@@ -468,6 +468,23 @@
 }
 
 /* Media Queries */
+/* Small devices (tablets, 100px and up)*/
+@media (min-width: 100px) {
+  .list-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+/* Small devices (tablets, 550px and up)*/
+@media (min-width: 550px) {
+  .list-details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
 /* Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) {
   .navbar-nav {
